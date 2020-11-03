@@ -1,0 +1,6 @@
+Installer MongoDB
+Creer la DB "prison_nantes"
+Creer la collection "prisoners"
+
+Aller dans le dossier nantes_prison_manager
+Lancer la commande "npm run dev"
