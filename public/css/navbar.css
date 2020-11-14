@@ -7,9 +7,48 @@ and open the template in the editor.
     Created on : 1 oct. 2020, 12:14:25
     Author     : Inaki
 */
-
-#navbar{
+#react-icon{
+    position: absolute;
+    top: 5px;
+    right: 5px;
     display: flex;
-    margin-bottom: 20px;
-    border-bottom: 2px solid black;
+    height: 24px;
+}
+
+#react-icon > p{
+    margin-right: 5px;
+    margin-top: 0px;
+}
+
+
+html{
+    font-family: 'Poppins', 'sans-serif';
+}
+header{
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100px;
+    text-align: center;
+}
+/*#navbar{
+    display: flex;
+    background-color: rgb(63, 114, 190);
+}*/
+.active{
+    background-color: rgb(92, 153, 245) !important;
+    outline:none;
+}
+#navbar > button{
+    height: 50px;
+    width: calc(100% / 3.0);
+    background-color: rgb(63, 114, 190);
+    border: 2px solid blue;
+    color: white;
+    font-family: 'Poppins', 'sans-serif';
+    font-size: 18px;
+}
+#navbar > button:hover{
+    background-color: rgb(92, 153, 245);
 }

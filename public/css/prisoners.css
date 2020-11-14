@@ -1,0 +1,27 @@
+#Prisoniers{
+    margin-top: 180px;
+}
+table{
+    width: 100%;
+    border: 1px solid black;
+}
+tbody{
+    text-align: center;
+}
+tbody > tr:nth-child(even){
+    background-color: rgb(206, 232, 241);
+}
+tbody > tr:nth-child(odd){
+    background-color: rgb(170, 208, 243);
+}
+tbody > tr:last-child{
+    background-color: lightgrey;
+    outline: solid 1px black;
+}
+td > input{
+    text-align: center;
+}
+td > p {
+    margin-top: 0px;
+    margin-bottom: 0px; 
+}
