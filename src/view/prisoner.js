@@ -84,7 +84,6 @@ export default class Prisoner extends React.Component{
                     }
               )
               .then((res) => {
-                res.json();
                 this.readPrisoner();
               });
       }catch(e){
