@@ -24,9 +24,9 @@ Runs npm start and node main.js to execute React App and NodeJS Server
 
 Or you can choose to launch separately the React App and the NodeJS Server
 
-For the React App 
-### `npm start` 
-
-For the NodeJS Server
+First the NodeJS Server
 ### `node server/main.js`
+
+Then the React App 
+### `npm start` 
 
