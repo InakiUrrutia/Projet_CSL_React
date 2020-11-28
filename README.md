@@ -1,4 +1,4 @@
-Nantes Prison Manager Project
+## Nantes Prison Manager Project
 
 Node version v12.16.3
 
@@ -6,7 +6,7 @@ Npm version v6.14.4
 
 React version v17.0.1
 
-First create a MongoDB Database with 3 collections:
+## First create a MongoDB Database with 3 collections:
 
 prisoners
 
