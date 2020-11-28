@@ -1,0 +1,28 @@
+#Decision{
+    margin-top: 180px;
+}
+
+#Decision > div{
+    width: 500px;
+    text-align: center;
+    margin-left: calc(50% - 250px);
+}
+
+.btn{
+    border-radius: 10px;
+    height: 30px;
+    width:150px;
+    margin-left: 5px;
+    background-color: rgb(14, 89, 160);
+    color: white;
+    cursor: pointer;
+    transition-duration: 0.3s;
+}
+
+.btn1:hover, .btn2:hover, .btn3:hover{
+    background-color: rgb(98, 160, 219);
+}
+
+.btnactive{
+    background-color: rgb(98, 160, 219) !important;
+}

@@ -1,54 +1,77 @@
 class Prisoner{
-    constructor(num, firstname, lastname, date_naiss, lieu_naiss){
+    constructor(num, firstname, lastname, date_naiss, lieu_naiss, motive, date_dec, duree_dec){
         this.num = num;
         this.firstname = firstname;
         this.lastname = lastname;
         this.date_naiss = date_naiss;
         this.lieu_naiss = lieu_naiss;
+        this.motive = motive;
+        this.date_dec = date_dec;
+        this.duree_dec = duree_dec;
     }
 
-    getNum(){
+    getNum = () => {
         return this.num;
     }
 
-    setNum(n){
+    setNum = (n) => {
         this.num = n;
     }
 
-    getFirstName(){
+    getFirstName = () => {
         return this.firstname;
     }
 
-    setFirstName(name){
+    setFirstName = (name) => {
         this.firstname = name;
     }
 
-    getLastName(){
+    getLastName = () => {
         return this.lastname;
     }
 
-    setLastName(name){
+    setLastName = (name) => {
         this.lastname = name;
     }
 
-    getDateNaiss(){
+    getDateNaiss = () => {
         return this.date_naiss;
     }
 
-    setDateNaiss(date){
+    setDateNaiss = (date) => {
         this.date_naiss = date;
     }
 
-    getLieuNaiss(){
+    getLieuNaiss = () => {
         return this.lieu_naiss;
     }
 
-    setLieuNaiss(lieu){
+    setLieuNaiss = (lieu) => {
         this.lieu_naiss = lieu;
     }
 
-    convertToJSON(){
-        return JSON.stringify(this);
+    getMotive = () => {
+        return this.motive;
+    }
+
+    setMotive = (motive) => {
+        this.motive = motive;
+    }
+
+    getDateDec = () => {
+        return this.date_dec;
+    }
+    
+    setDateDec = (date) => {
+        this.date_dec = date
+    }
+
+    getDureeDec = () => {
+        return this.duree_dec;
+    }
+
+    setDureeDec = (duree) => {
+        this.duree_dec = duree;
     }
 }
 

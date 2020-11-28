@@ -14,10 +14,6 @@ tbody > tr:nth-child(even){
 tbody > tr:nth-child(odd){
     background-color: rgb(170, 208, 243);
 }
-tbody > tr:last-child{
-    background-color: lightgrey;
-    outline: solid 1px black;
-}
 td > input{
     text-align: center;
 }

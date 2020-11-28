@@ -1,0 +1,29 @@
+#Incarceration{
+    margin-top: 180px;
+}
+
+#Incarceration > div > div{
+    display: flex;
+}
+
+#Incarceration > div > div > div{
+    width: 50%;
+    margin-left: 15%;
+}
+
+#Incarceration > div > div > div:nth-child(1){
+    border-right: 2px solid black;
+}
+
+#Incarceration > div > div > div > label > input{
+    margin-left: 20px;
+}
+
+#Incarceration > div > button{
+    margin-top: 50px;
+    margin-left: 48.25%;
+}
+
+#Incarceration > div > div > div > label > select{
+    margin-left: 20px;
+}

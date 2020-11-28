@@ -13,9 +13,14 @@ async function getNumber(){
     mongoClient.connect(url, {useUnifiedTopology: true}, (err, client) => {
       db = client.db('prison_nantes');
 
-      db.collection('prisoners').find().sort({"num":-1}).limit(1).toArray( (err, data) =>{
-        let number = data[0].num + 1;
-        console.log('num = ' + number);
+      db.collection('prisoners').find().sort({"num":-1}).limit(1).toArray( (err, data) => {
+        console.log(data);
+        let number;
+        if(data[0] == undefined){
+          number = 1;
+        }
+        else number = data[0].num + 1;
+        //console.log('num = ' + number);
         resolve(number);
         client.close();
       });
@@ -24,7 +29,7 @@ async function getNumber(){
 }
 
 
-// Fonction Create
+// Create a prisoner
 async function create(prisoner){
 
   let num = 0;
@@ -36,17 +41,20 @@ async function create(prisoner){
       mongoClient.connect(url, {useUnifiedTopology: true}, (err, client) => {
         db = client.db('prison_nantes');
   
-        let new_prisoner_object = new Prisoner(num, prisoner.firstname, prisoner.lastname, prisoner.date_naiss, prisoner.lieu_naiss);
+        let new_prisoner_object = new Prisoner(num, prisoner.firstname, prisoner.lastname, prisoner.date_naiss, prisoner.lieu_naiss, prisoner.motive, prisoner.date_dec, prisoner.duree_dec);
 
         let new_prisoner = {
           "num" : new_prisoner_object.getNum(),
           "lastname" : new_prisoner_object.getLastName(),
           "firstname" : new_prisoner_object.getFirstName(),
           "date_naiss" : new_prisoner_object.getDateNaiss(),
-          "lieu_naiss" : new_prisoner_object.getLieuNaiss()
+          "lieu_naiss" : new_prisoner_object.getLieuNaiss(),
+          "motive" : new_prisoner_object.getMotive(),
+          "date_dec" : new_prisoner_object.getDateDec(),
+          "duree_dec" : new_prisoner_object.getDureeDec(),
         };
   
-        console.log(new_prisoner);
+        //console.log(new_prisoner);
 
         db.collection('prisoners').updateOne(new_prisoner, {$set:new_prisoner}, {upsert:true}, (err, res) => {
           if(err) resolve(false);
@@ -58,7 +66,7 @@ async function create(prisoner){
   });
 }
 
-// Fonction Read
+// Get prisoners list
 async function read(filters,projections){
   return await new Promise((resolve) => {
     mongoClient.connect(url, {useUnifiedTopology: true}, (err, client) => {
@@ -76,12 +84,12 @@ async function read(filters,projections){
   });
 }
 
-// Fonction Update
+// Update a prisoner
 async function update(prisoner, newfields){
   return await new Promise((resolve) => {
     mongoClient.connect(url, {useUnifiedTopology: true}, (err, client) => {
       db = client.db('prison_nantes');
-      db.collection('prisoners').updateOne(prisoner, {$set:newfields}, {upsert:true}, (err, res) => {
+      db.collection('prisoners').updateOne({num: prisoner.num}, {$set:newfields}, {upsert:true}, (err, res) => {
         if(err) resolve(false);
         else resolve(true);
         client.close();
@@ -90,14 +98,14 @@ async function update(prisoner, newfields){
   });
 }
 
-// Fonction Delete
+// Delete a prisoner
 async function del(prisoner){
   return await new Promise((resolve) => {
     mongoClient.connect(url, {useUnifiedTopology: true}, (err, client) => {
       db = client.db('prison_nantes');
       db.collection('prisoners').deleteOne(prisoner, (err, res) => {
-        if(err) resolve(false);
-        else resolve(true);
+        if(err) {console.log('No document deleted'); resolve(false);}
+        else {console.log('1 document deleted'); resolve(true)};
         client.close();
       });
     });
@@ -118,7 +126,7 @@ router.post('/create', (req, res) =>{
 });
 
 router.get('/read', (req,res) => {
-  read({},{projection:{_id: 0 }})
+  read({},{_id : 0})
   .then((data) => {
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE, OPTIONS');
@@ -130,14 +138,20 @@ router.get('/read', (req,res) => {
 router.put('/update', (req,res) => {
   update(req.body.prisoner, req.body.newfields)
   .then((out) => {
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
     if(out) res.sendStatus(200);
     else res.sendStatus(400);
   })
 });
 
 router.delete('/delete', (req, res) => {
-  del(req.body)
+  del(req.body.prisoner)
   .then((out) => {
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
     if(out) res.sendStatus(200);
     else res.sendStatus(400);
   })
